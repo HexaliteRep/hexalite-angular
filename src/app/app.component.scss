@@ -1,0 +1,15 @@
+@import '~scss/vars';
+
+a, a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover, a:active, a:focus {
+  color: $blue-allianz;
+  text-decoration: none;
+}
+
+.activeLink {
+  color: $blue-allianz !important;
+}

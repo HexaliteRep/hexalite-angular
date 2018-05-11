@@ -1,0 +1,71 @@
+<div>
+  <form [formGroup]="searchForm">
+
+    <div class="row">
+      <div class="form-group col-md-2">
+        <input id='licensePlate' placeholder="License Plate" formControlName="licensePlate" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+          class="form-control" #licensePlate>
+      </div>
+      <div class="form-group col-md-2">
+        <input id='assignmentNo' placeholder="Assignment No." formControlName="assignmentNo" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+          class="form-control" #assignmentNo>
+      </div>
+      <div class="form-group col-md-2">
+        <select id="serviceType" formControlName="serviceType" class="form-control">
+          <option [value]="undefined" disabled [selected]="true">Service Type</option>
+          <option *ngFor="let option of serviceTypeOptions" [value]="option.id">{{option.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-2">
+          <app-datepicker-adapter [date]="initDate" (change)="setDate($event, 'initDate')"></app-datepicker-adapter>
+      </div>
+      <div class="form-group col-md-2">
+          <app-datepicker-adapter [date]="endDate" (change)="setDate($event, 'endDate')"></app-datepicker-adapter>
+      </div>
+      <div class="form-group col-md-2">
+        <select id="eventType" formControlName="eventType" class="form-control">
+          <option [value]="undefined" disabled [selected]="true">Event Type</option>
+          <option *ngFor="let option of eventTypeOptions" [value]="option.value">{{option.name}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <select id="status" formControlName="status" class="form-control">
+          <option [value]="undefined" disabled [selected]="true">Status</option>
+          <option *ngFor="let option of statusOptions" [value]="option.value">{{option.name}}</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Dispatch Time</th>
+      <th scope="col">Service Type</th>
+      <th scope="col">Event Type</th>
+      <th scope="col">License Plate</th>
+      <th scope="col">Event Location</th>
+      <th scope="col">Vehicle model</th>
+      <th scope="col">Vehicle Reg. Date</th>
+      <th scope="col">Assignment No.</th>
+      <th scope="col">Product</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let case of cases">
+      <td>{{case.dispatchTime | date:'dd/MM/yyyy HH:mm'}}</td>
+      <td>{{case.serviceType}}</td>
+      <td>{{case.eventType}}</td>
+      <td>{{case.licensePlate}}</td>
+      <td>{{case.eventLocation}}</td>
+      <td>{{case.vehicleModel}}</td>
+      <td>{{case.vehicleRegDate | date:'dd/MM/yyyy'}}</td>
+      <td>{{case.assignmentNo}}</td>
+      <td>{{case.product}}</td>
+      <td>{{case.status}}</td>
+    </tr>
+  </tbody>
+</table>

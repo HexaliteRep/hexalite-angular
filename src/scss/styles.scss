@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@import './vars';
+
+agm-map {
+  height: 400px;
+}
+
+body {
+  margin: 0 auto !important;
+  max-width: 1200px;
+}

@@ -1,0 +1,26 @@
+<h3>{{ title }}</h3>
+
+<div>
+  <form [formGroup]="mapForm">
+    <div class="form-group">
+      <label for="startLocation">Start Location</label>
+      <br>
+      <input id='startSearch' style="width: 50%; height: 25px;" placeholder="Enter Location" autocorrect="off" autocapitalize="off"
+        spellcheck="off" type="text" class="form-control" #startSearch>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="endLocation">End Location</label>
+      <br>
+      <input id='endSearch' style="width: 50%; height: 25px;" placeholder="Enter Location" autocorrect="off" autocapitalize="off"
+        spellcheck="off" type="text" class="form-control" #endSearch>
+    </div>
+    <br>
+
+    <agm-map [latitude]="41.3887900" [longitude]="2.1589900">
+      <agm-direction draggable="true" travel-mode="DRIVING" [origin]="mapForm.value.startLoc" [destination]="mapForm.value.endLoc">
+      </agm-direction>
+    </agm-map>
+  </form>
+</div>
+<br>

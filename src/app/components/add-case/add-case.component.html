@@ -1,0 +1,69 @@
+<form [formGroup]="addCaseForm">
+  <div class="row">
+    <div class="form-group col-md-3">
+      <label>Dispatch time</label>
+      <app-datepicker-adapter [date]="dispatchTime" (change)="setDate($event, 'dispatchTime')"></app-datepicker-adapter>
+    </div>
+    <div class="form-group col-md-3">
+      <label>Service Type</label>
+      <select id="serviceType" formControlName="serviceType" class="form-control">
+        <option [value]="undefined" disabled [selected]="true">Service Type</option>
+        <option *ngFor="let option of serviceTypeOptions" [value]="option.value">{{option.name}}</option>
+      </select>
+    </div>
+    <div class="form-group col-md-3">
+      <label>Event type</label>
+      <select id="eventType" formControlName="eventType" class="form-control">
+        <option [value]="undefined" disabled [selected]="true">Event Type</option>
+        <option *ngFor="let option of eventTypeOptions" [value]="option.value">{{option.name}}</option>
+      </select>
+    </div>
+    <div class="form-group col-md-3">
+      <label>License plate</label>
+      <input id='licensePlate' placeholder="License Plate" formControlName="licensePlate" autocorrect="off" autocapitalize="off"
+        spellcheck="off" type="text" class="form-control" #licensePlate>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-3">
+      <label>Event location</label>
+      <input id='eventLocation' placeholder="Event Location" formControlName="eventLocation" autocorrect="off" autocapitalize="off"
+        spellcheck="off" type="text" class="form-control" #eventLocation>
+    </div>
+    <div class="form-group col-md-3">
+      <label>Vehicle model</label>
+      <input id='vehicleModel' placeholder="Vehicle Model" formControlName="vehicleModel" autocorrect="off" autocapitalize="off"
+        spellcheck="off" type="text" class="form-control" #vehicleModel>
+    </div>
+    <div class="form-group col-md-3">
+      <label>Vehicle Reg. Date</label>
+      <app-datepicker-adapter [date]="vehicleRegDate" (change)="setDate($event, 'vehicleRegDate')"></app-datepicker-adapter>
+    </div>
+    <div class="form-group col-md-3">
+      <label>Assignment No.</label>
+      <input id='assignmentNo' placeholder="Assignment No." formControlName="assignmentNo" autocorrect="off" autocapitalize="off"
+        spellcheck="off" type="text" class="form-control" #assignmentNo>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-3">
+      <label>Product</label>
+      <input id='product' placeholder="Product" formControlName="product" autocorrect="off" autocapitalize="off" spellcheck="off"
+        type="text" class="form-control" #product>
+    </div>
+    <div class="form-group col-md-3">
+      <label>Status</label>
+      <select id="status" formControlName="status" class="form-control">
+        <option [value]="undefined" disabled [selected]="true">Status</option>
+        <option *ngFor="let option of statusOptions" [value]="option.value">{{option.name}}</option>
+      </select>
+    </div>
+  </div>
+</form>
+
+
+
+
+<p>
+  <button type="button" class="btn btn-outline-primary" (click)="addCase();">Añadir caso</button>
+</p>
