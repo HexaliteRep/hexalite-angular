@@ -1,6 +1,9 @@
 <div>
+  <div class="text-right">
+    <span class="fas fa-sync-alt cursor-pointer" (click)="getCases()"></span> Last update: {{lastUpdate | date:'dd/MM/yyyy HH:mm'}}
+    <br>
+  </div>
   <form [formGroup]="searchForm">
-
     <div class="row">
       <div class="form-group col-md-2">
         <input id='licensePlate' placeholder="License Plate" formControlName="licensePlate" autocorrect="off" autocapitalize="off"
@@ -16,7 +19,7 @@
           <option *ngFor="let option of serviceTypeOptions" [value]="option.id">{{option.name}}</option>
         </select>
       </div>
-      <div class="form-group col-md-2">     
+      <div class="form-group col-md-2">
       </div>
       <div class="form-group col-md-2">
         <button (click)="filter()">Search</button>
@@ -51,20 +54,41 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Dispatch Time</th>
-      <th scope="col">Service Type</th>
-      <th scope="col">Event Type</th>
-      <th scope="col">License Plate</th>
-      <th scope="col">Event Location</th>
-      <th scope="col">Vehicle model</th>
-      <th scope="col">Vehicle Reg. Date</th>
-      <th scope="col">Assignment No.</th>
-      <th scope="col">Product</th>
-      <th scope="col">Status</th>
+      <th scope="col" class="cursor-pointer" (click)="sort('dispatchTime')">Dispatch Time
+        <span class="fas fa-sort" *ngIf="key =='dispatchTime'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('serviceType')">Service Type
+        <span class="fas fa-sort" *ngIf="key =='serviceType'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('eventType')">Event Type
+        <span class="fas fa-sort" *ngIf="key =='eventType'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('licensePlate')">License Plate
+        <span class="fas fa-sort" *ngIf="key =='licensePlate'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('eventLocation')">Event Location
+        <span class="fas fa-sort" *ngIf="key =='eventLocation'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('vehicleModel')">Vehicle model
+        <span class="fas fa-sort" *ngIf="key =='vehicleModel'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('vehicleRegDate')">Vehicle Reg. Date
+        <span class="fas fa-sort" *ngIf="key =='vehicleRegDate'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('assignmentNo')">Assignment No.
+        <span class="fas fa-sort" *ngIf="key =='assignmentNo'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('product')">Product
+        <span class="fas fa-sort" *ngIf="key =='product'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('status')">Status
+        <span class="fas fa-sort" *ngIf="key =='status'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let case of cases | search : valueSearch">
+
+    <tr *ngFor="let case of cases | search : valueSearch | orderBy: key : reverse">
       <td>{{case.dispatchTime | date:'dd/MM/yyyy HH:mm'}}</td>
       <td>{{case.serviceType}}</td>
       <td>{{case.eventType}}</td>

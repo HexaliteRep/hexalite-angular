@@ -58,10 +58,10 @@ export class AddCaseComponent implements OnInit {
     console.log('Case: ', this.addCaseForm.value);
     this.backendService.addCase(this.addCaseForm.value)
     .subscribe(x => {
-      this.notificationService.init(AddedNotificationComponent, { Content: `The case has been added!` }, {});
+      this.notificationService.init(AddedNotificationComponent, { Content: `The case has been added!` }, {}, 'OK');
       this.router.navigate(['/dispatcher-management']);
     },
-    error => console.log('Error'));
+    error => this.notificationService.init(AddedNotificationComponent, { Content: `Error adding case` }, {}, 'KO'));
   }
 
   goBack() {

@@ -11,6 +11,7 @@ import { AgmDirectionModule} from 'agm-direction';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { Ng2OrderModule } from 'ng2-order-pipe';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
@@ -18,6 +19,8 @@ import { SearcherMapComponent } from './components/searcher-map/searcher-map.com
 import { LanguageNavbarComponent } from './components/language-navbar/language-navbar.component';
 import { DispatchManagementComponent } from './components/dispatch-management/dispatch-management.component';
 import { DatepickerAdapterComponent } from './components/datepicker-adapter/datepicker-adapter.component';
+import { AddCaseComponent } from './components/add-case/add-case.component';
+import { AddedNotificationComponent } from './components/added-notification/added-notification.component';
 
 import { appRoutes } from './routerConfig';
 import { Constants } from './constants/constants';
@@ -26,12 +29,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BackendService } from './services/backend.service';
 import { DomService } from './services/dom.service';
 import { NotificationService } from './services/notification.service';
-
-import { AddCaseComponent } from './components/add-case/add-case.component';
-
-import { AddedNotificationComponent } from './components/added-notification/added-notification.component';
-
-
 
 import { SearchPipe } from './search.pipe';
 
@@ -71,7 +68,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       },
     }),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    Ng2OrderModule
   ],
   entryComponents: [
     AddedNotificationComponent

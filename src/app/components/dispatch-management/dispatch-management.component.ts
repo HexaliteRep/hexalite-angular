@@ -4,7 +4,10 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Constants } from '../../constants/constants';
 import { Case } from '../../model/Case';
 import { DatepickerAdapterComponent } from '../datepicker-adapter/datepicker-adapter.component';
+import { AddedNotificationComponent } from '../added-notification/added-notification.component';
+
 import { BackendService } from '../../services/backend.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-dispatch-management',
@@ -19,23 +22,26 @@ export class DispatchManagementComponent implements OnInit {
   statusOptions = Constants.STATUS;
   initDate: Date;
   endDate: Date;
+
+
+  lastUpdate: Date;
+
+  // sorting
+  key = 'dispatchTime'; // set default
+  reverse = false;
+
   valueSearch: { [key: string]: any };
 
+
   constructor(private backendService: BackendService,
-    private formBuilder: FormBuilder) {
+  private formBuilder: FormBuilder,
+  private notificationService: NotificationService) {
+
     this.createForm();
   }
 
   ngOnInit() {
-    const result = this.backendService.getCases();
-    result.subscribe(
-      x => {
-        if (x) {
-          for (let i = 0; i < x.length; i++) {
-            this.cases.push(x[i]);
-          }
-        }
-      });
+    this.getCases();
   }
 
   createForm() {
@@ -49,7 +55,6 @@ export class DispatchManagementComponent implements OnInit {
       status: new FormControl('')
     });
   }
-
 
   setDate($event, date) {
     this.searchForm.value[date] = $event;
@@ -67,8 +72,8 @@ export class DispatchManagementComponent implements OnInit {
       "eventType": this.searchForm.value.eventType == "" || this.searchForm.value.eventType == "undefined" ? "" : this.searchForm.value.eventType,
       "status": this.searchForm.value.status == "" || this.searchForm.value.status == "undefined" ? "" : this.searchForm.value.status,
       "initDate": this.searchForm.value.initDate == "" || this.searchForm.value.initDate == "undefined" ? "": this.searchForm.value.initDate,
-      "endDate": this.searchForm.value.endDate == "" || this.searchForm.value.endDate == "undefined" ? "": this.searchForm.value.endDate   
-    }  
+      "endDate": this.searchForm.value.endDate == "" || this.searchForm.value.endDate == "undefined" ? "": this.searchForm.value.endDate
+    }
   }
 
   reset(){
@@ -83,4 +88,21 @@ export class DispatchManagementComponent implements OnInit {
     this.valueSearch = null;
     this.filter();
   }
+
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
+  getCases() {
+    const result = this.backendService.getCases();
+    result.subscribe(
+      x => {
+        this.cases = x ? x : [];
+        this.lastUpdate = new Date();
+        this.notificationService.init(AddedNotificationComponent, { Content: `The list has been updated` }, {}, 'OK');
+      },
+      error => this.notificationService.init(AddedNotificationComponent, { Content: `Error updating the list` }, {}, 'KO'));
+  }
+
 }

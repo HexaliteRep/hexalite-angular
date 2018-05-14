@@ -8,6 +8,8 @@ import { NotificationService } from '../../services/notification.service';
 })
 export class AddedNotificationComponent implements OnInit {
 
+  notificationClass: String;
+
   constructor(private notificationService: NotificationService) {
     setTimeout(() => {
       this.notificationService.destroy();
@@ -15,6 +17,7 @@ export class AddedNotificationComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.notificationClass = this.notificationService.notificationClass;
   }
 
   close() {
