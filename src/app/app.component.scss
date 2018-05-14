@@ -13,3 +13,14 @@ a:hover, a:active, a:focus {
 .activeLink {
   color: $blue-allianz !important;
 }
+
+#notification-container {
+  position:  fixed;
+  bottom: 7%;
+  right: 5%;
+  width: 20%;
+  background: white;
+  text-align: center;
+  // box-shadow: 0px 0px 2px 1px black;
+  z-index: 98;
+}

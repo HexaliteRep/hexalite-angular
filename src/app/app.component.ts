@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { NotificationService } from './services/notification.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -30,7 +32,7 @@ export class AppComponent implements OnInit {
     }
   ];
 
-  constructor(private translate:  TranslateService) {
+  constructor(private translate:  TranslateService, private notificationService: NotificationService) {
     let lan = window.navigator.language.substring(0, 2);
     const arrayLan = ['en', 'es'];
     if (!arrayLan.includes(lan)) {
@@ -51,4 +53,9 @@ export class AppComponent implements OnInit {
   setCurrentTab(tab) {
     this.currentTab = tab;
   }
+
+  removeNotification() {
+    this.notificationService.destroy();
+  }
+
 }

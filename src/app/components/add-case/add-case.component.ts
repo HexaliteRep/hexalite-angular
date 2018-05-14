@@ -6,8 +6,10 @@ import { Router } from '@angular/router';
 import { Constants } from '../../constants/constants';
 import { Case } from '../../model/Case';
 import { DatepickerAdapterComponent } from '../datepicker-adapter/datepicker-adapter.component';
+import { AddedNotificationComponent } from '../added-notification/added-notification.component';
 
 import { BackendService } from '../../services/backend.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-add-case',
@@ -27,11 +29,13 @@ export class AddCaseComponent implements OnInit {
   constructor(private location: Location,
     private backendService: BackendService,
     private formBuilder: FormBuilder,
-    private router: Router) {
+    private router: Router,
+    private notificationService: NotificationService) {
       this.createForm();
      }
 
   ngOnInit() {
+    this.notificationService.init(AddedNotificationComponent, { Content: `The case has been added!` }, {});
   }
 
   // addCase() {
@@ -54,7 +58,10 @@ export class AddCaseComponent implements OnInit {
   addCase() {
     console.log('Case: ', this.addCaseForm.value);
     this.backendService.addCase(this.addCaseForm.value)
-    .subscribe(x => this.router.navigate(['/dispatcher-management']),
+    .subscribe(x => {
+      this.notificationService.init(AddedNotificationComponent, { Content: `The case has been added!` }, {});
+      this.router.navigate(['/dispatcher-management']);
+    },
     error => console.log('Error'));
   }
 
