@@ -38,8 +38,8 @@ export class Constants {
   },
   {
     id: '3',
-    name: 'Flat battery',
-    value: 'Flat battery'
+    name: 'Flat Battery',
+    value: 'Flat Battery'
   },
   {
     id: '4',
@@ -70,6 +70,6 @@ export class Constants {
   {
     _id: '2',
     name: 'Provider Timeout',
-    value: 'Provider Timeou'
+    value: 'Provider Timeout'
   }];
 }

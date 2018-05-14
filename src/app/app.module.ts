@@ -28,8 +28,12 @@ import { DomService } from './services/dom.service';
 import { NotificationService } from './services/notification.service';
 
 import { AddCaseComponent } from './components/add-case/add-case.component';
+
 import { AddedNotificationComponent } from './components/added-notification/added-notification.component';
 
+
+
+import { SearchPipe } from './search.pipe';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -44,7 +48,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     DispatchManagementComponent,
     DatepickerAdapterComponent,
     AddCaseComponent,
-    AddedNotificationComponent
+    AddedNotificationComponent,
+    SearchPipe
+
   ],
   imports: [
     BrowserModule,
