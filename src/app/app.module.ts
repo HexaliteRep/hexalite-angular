@@ -11,6 +11,7 @@ import { AgmDirectionModule} from 'agm-direction';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { Ng2OrderModule } from 'ng2-order-pipe';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
@@ -65,7 +66,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       },
     }),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    Ng2OrderModule
   ],
   entryComponents: [
     AddedNotificationComponent

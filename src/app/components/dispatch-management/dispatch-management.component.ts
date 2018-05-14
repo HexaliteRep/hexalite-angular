@@ -20,6 +20,10 @@ export class DispatchManagementComponent implements OnInit {
   initDate: Date;
   endDate: Date;
 
+  // sorting
+  key = 'dispatchTime'; // set default
+  reverse = false;
+
   constructor(private backendService: BackendService,
   private formBuilder: FormBuilder) {
     this.createForm();
@@ -49,9 +53,14 @@ export class DispatchManagementComponent implements OnInit {
     });
   }
 
-
   setDate($event, date) {
     this.searchForm.value[date] = $event;
     this.searchForm.setValue(this.searchForm.value);
   }
+
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
 }
