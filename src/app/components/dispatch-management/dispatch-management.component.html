@@ -1,14 +1,17 @@
 <div>
+  <div class="text-right">
+    <span class="fas fa-sync-alt cursor-pointer" (click)="getCases()"></span> Last update: {{lastUpdate | date:'dd/MM/yyyy HH:mm'}}
+    <br>
+  </div>
   <form [formGroup]="searchForm">
-
     <div class="row">
       <div class="form-group col-md-2">
-        <input id='licensePlate' placeholder="License Plate" formControlName="licensePlate" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
-          class="form-control" #licensePlate>
+        <input id='licensePlate' placeholder="License Plate" formControlName="licensePlate" autocorrect="off" autocapitalize="off"
+          spellcheck="off" type="text" class="form-control" #licensePlate>
       </div>
       <div class="form-group col-md-2">
-        <input id='assignmentNo' placeholder="Assignment No." formControlName="assignmentNo" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
-          class="form-control" #assignmentNo>
+        <input id='assignmentNo' placeholder="Assignment No." formControlName="assignmentNo" autocorrect="off" autocapitalize="off"
+          spellcheck="off" type="text" class="form-control" #assignmentNo>
       </div>
       <div class="form-group col-md-2">
         <select id="serviceType" formControlName="serviceType" class="form-control">
@@ -19,10 +22,10 @@
     </div>
     <div class="row">
       <div class="form-group col-md-2">
-          <app-datepicker-adapter [date]="initDate" (change)="setDate($event, 'initDate')"></app-datepicker-adapter>
+        <app-datepicker-adapter [date]="initDate" (change)="setDate($event, 'initDate')"></app-datepicker-adapter>
       </div>
       <div class="form-group col-md-2">
-          <app-datepicker-adapter [date]="endDate" (change)="setDate($event, 'endDate')"></app-datepicker-adapter>
+        <app-datepicker-adapter [date]="endDate" (change)="setDate($event, 'endDate')"></app-datepicker-adapter>
       </div>
       <div class="form-group col-md-2">
         <select id="eventType" formControlName="eventType" class="form-control">
@@ -42,26 +45,36 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col" (click)="sort('dispatchTime')">Dispatch Time
-        <span class="fas fa-sort" *ngIf="key =='dispatchTime'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span></th>
-      <th scope="col" (click)="sort('serviceType')">Service Type
-          <span class="fas fa-sort" *ngIf="key =='serviceType'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span></th>
-      <th scope="col" (click)="sort('eventType')">Event Type
-          <span class="fas fa-sort" *ngIf="key =='eventType'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span></th>
-      <th scope="col" (click)="sort('licensePlate')">License Plate
-          <span class="fas fa-sort" *ngIf="key =='licensePlate'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span></th>
-      <th scope="col" (click)="sort('eventLocation')">Event Location
-          <span class="fas fa-sort" *ngIf="key =='eventLocation'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span></th>
-      <th scope="col" (click)="sort('vehicleModel')">Vehicle model
-          <span class="fas fa-sort" *ngIf="key =='vehicleModel'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span></th>
-      <th scope="col" (click)="sort('vehicleRegDate')">Vehicle Reg. Date
-        <span class="fas fa-sort" *ngIf="key =='vehicleRegDate'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span></th>
-      <th scope="col" (click)="sort('assignmentNo')">Assignment No.
-      <span class="fas fa-sort" *ngIf="key =='assignmentNo'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span></th>
-      <th scope="col" (click)="sort('product')">Product
-          <span class="fas fa-sort" *ngIf="key =='product'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span></th>
-      <th scope="col" (click)="sort('status')">Status
-          <span class="fas fa-sort" *ngIf="key =='status'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span></th>
+      <th scope="col" class="cursor-pointer" (click)="sort('dispatchTime')">Dispatch Time
+        <span class="fas fa-sort" *ngIf="key =='dispatchTime'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('serviceType')">Service Type
+        <span class="fas fa-sort" *ngIf="key =='serviceType'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('eventType')">Event Type
+        <span class="fas fa-sort" *ngIf="key =='eventType'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('licensePlate')">License Plate
+        <span class="fas fa-sort" *ngIf="key =='licensePlate'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('eventLocation')">Event Location
+        <span class="fas fa-sort" *ngIf="key =='eventLocation'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('vehicleModel')">Vehicle model
+        <span class="fas fa-sort" *ngIf="key =='vehicleModel'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('vehicleRegDate')">Vehicle Reg. Date
+        <span class="fas fa-sort" *ngIf="key =='vehicleRegDate'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('assignmentNo')">Assignment No.
+        <span class="fas fa-sort" *ngIf="key =='assignmentNo'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('product')">Product
+        <span class="fas fa-sort" *ngIf="key =='product'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
+      <th scope="col" class="cursor-pointer" (click)="sort('status')">Status
+        <span class="fas fa-sort" *ngIf="key =='status'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+      </th>
     </tr>
   </thead>
   <tbody>

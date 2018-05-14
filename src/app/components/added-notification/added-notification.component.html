@@ -1,3 +1,4 @@
-<div class="alert-success notification" (click)="close()">
+<div class="notification" [ngClass]="notificationClass" (click)="close()">
+  <span class="fas fa-times cursor-pointer float-right"></span>
   {{Content}}
 </div>
