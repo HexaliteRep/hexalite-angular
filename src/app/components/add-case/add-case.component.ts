@@ -35,7 +35,6 @@ export class AddCaseComponent implements OnInit {
      }
 
   ngOnInit() {
-    this.notificationService.init(AddedNotificationComponent, { Content: `The case has been added!` }, {});
   }
 
   // addCase() {
