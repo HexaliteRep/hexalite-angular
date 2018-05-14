@@ -24,6 +24,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BackendService } from './services/backend.service';
 import { DatepickerAdapterComponent } from './components/datepicker-adapter/datepicker-adapter.component';
 import { AddCaseComponent } from './components/add-case/add-case.component';
+import { SearchPipe } from './search.pipe';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -36,7 +37,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     LanguageNavbarComponent,
     DispatchManagementComponent,
     DatepickerAdapterComponent,
-    AddCaseComponent
+    AddCaseComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
