@@ -1,4 +1,4 @@
-<div>
+<div class="pageup">
   <div class="text-right">
     <span class="fas fa-sync-alt cursor-pointer" (click)="getCases()"></span> Last update: {{lastUpdate | date:'dd/MM/yyyy HH:mm'}}
     <br>
@@ -22,7 +22,7 @@
       <div class="form-group col-md-2">
       </div>
       <div class="form-group col-md-2">
-        <button (click)="filter()">Search</button>
+        <button type="button" class="btn btn-primary wbth" (click)="filter()">Search</button>
       </div>
     </div>
     <div class="row">
@@ -45,60 +45,86 @@
         </select>
       </div>
       <div class="form-group col-md-2">
-        <button (click)="reset()">Reset</button>
+        <button type="button" class="btn btn-outline-primary wbth" (click)="reset()">Reset</button>
       </div>
     </div>
 
   </form>
 </div>
-<table class="table">
+
+<div class="pagedown">
+<table class="table" >
+    <thead class="h2">
+        <tr>
+          <th nowrap scope="col" class="cursor-pointer" (click)="tab = 'To Accept'">To Accept
+            <span class="fas" *ngIf="key =='dispatchTime'"></span>
+          </th>
+          <th nowrap scope="col" class="cursor-pointer">To Dispatch
+            <span class="fas" *ngIf="key =='serviceType'"></span>
+          </th>
+          <th nowrap scope="col" class="cursor-pointer" (click)="tab = 'To Monitor'">To Monitor
+              <span class="fas" *ngIf="key =='dispatchTime'"></span>
+            </th>
+        </tr>
+        </thead>
   <thead>
-    <tr>
-      <th scope="col" class="cursor-pointer" (click)="sort('dispatchTime')">Dispatch Time
+    <tr *ngIf="true">
+      <th nowrap scope="col" class="cursor-pointer" (click)="sort('dispatchTime')">Dispatch Time
         <span class="fas fa-sort" *ngIf="key =='dispatchTime'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
       </th>
-      <th scope="col" class="cursor-pointer" (click)="sort('serviceType')">Service Type
+      <th nowrap scope="col" class="cursor-pointer" (click)="sort('serviceType')">Service Type
         <span class="fas fa-sort" *ngIf="key =='serviceType'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
       </th>
-      <th scope="col" class="cursor-pointer" (click)="sort('eventType')">Event Type
+      <th nowrap scope="col" class="cursor-pointer" (click)="sort('eventType')">Event Type
         <span class="fas fa-sort" *ngIf="key =='eventType'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
       </th>
-      <th scope="col" class="cursor-pointer" (click)="sort('licensePlate')">License Plate
+      <th nowrap scope="col" class="cursor-pointer" (click)="sort('licensePlate')">License Plate
         <span class="fas fa-sort" *ngIf="key =='licensePlate'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
       </th>
-      <th scope="col" class="cursor-pointer" (click)="sort('eventLocation')">Event Location
+      <th nowrap scope="col" class="cursor-pointer" (click)="sort('eventLocation')">Event Location
         <span class="fas fa-sort" *ngIf="key =='eventLocation'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
       </th>
-      <th scope="col" class="cursor-pointer" (click)="sort('vehicleModel')">Vehicle model
+      <th nowrap *ngIf="tab == 'To Accept'" scope="col" class="cursor-pointer" (click)="sort('vehicleModel')">Vehicle model
         <span class="fas fa-sort" *ngIf="key =='vehicleModel'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
       </th>
-      <th scope="col" class="cursor-pointer" (click)="sort('vehicleRegDate')">Vehicle Reg. Date
+      <th nowrap *ngIf="tab == 'To Accept'" scope="col" class="cursor-pointer" (click)="sort('vehicleRegDate')">Vehicle Reg. Date
         <span class="fas fa-sort" *ngIf="key =='vehicleRegDate'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
       </th>
-      <th scope="col" class="cursor-pointer" (click)="sort('assignmentNo')">Assignment No.
+      <th nowrap scope="col" class="cursor-pointer" (click)="sort('assignmentNo')">Assignment No.
         <span class="fas fa-sort" *ngIf="key =='assignmentNo'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
       </th>
-      <th scope="col" class="cursor-pointer" (click)="sort('product')">Product
+      <th nowrap scope="col" class="cursor-pointer" (click)="sort('product')">Product
         <span class="fas fa-sort" *ngIf="key =='product'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
       </th>
-      <th scope="col" class="cursor-pointer" (click)="sort('status')">Status
+      <th nowrap *ngIf="tab == 'To Monitor'" scope="col" class="cursor-pointer" (click)="sort('product')">Est. Arrival Time
+          <span class="fas fa-sort" *ngIf="key =='product'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+        </th>
+        <th nowrap *ngIf="tab == 'To Monitor'" scope="col" class="cursor-pointer" (click)="sort('status')">Remaining Time
+          <span class="fas fa-sort" *ngIf="key =='status'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+        </th>
+      <th nowrap scope="col" class="cursor-pointer" (click)="sort('status')">Status
         <span class="fas fa-sort" *ngIf="key =='status'" [ngClass]="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
       </th>
+      <th nowrap scope="col" class="cursor-pointer">Action
+        </th>
     </tr>
   </thead>
   <tbody>
 
-    <tr *ngFor="let case of cases | search : valueSearch | orderBy: key : reverse">
-      <td>{{case.dispatchTime | date:'dd/MM/yyyy HH:mm'}}</td>
-      <td>{{case.serviceType}}</td>
-      <td>{{case.eventType}}</td>
-      <td>{{case.licensePlate}}</td>
-      <td>{{case.eventLocation}}</td>
-      <td>{{case.vehicleModel}}</td>
-      <td>{{case.vehicleRegDate | date:'dd/MM/yyyy'}}</td>
-      <td>{{case.assignmentNo}}</td>
-      <td>{{case.product}}</td>
-      <td>{{case.status}}</td>
+    <tr *ngFor="let case of casesFilter() | search : valueSearch | orderBy: key : reverse">
+      <td nowrap>{{case.dispatchTime | date:'dd/MM/yyyy HH:mm'}}</td>
+      <td nowrap>{{case.serviceType}}</td>
+      <td nowrap>{{case.eventType}}</td>
+      <td nowrap>{{case.licensePlate}}</td>
+      <td nowrap>{{case.eventLocation}}</td>
+      <td nowrap *ngIf="tab == 'To Accept'">{{case.vehicleModel}}</td>
+      <td nowrap *ngIf="tab == 'To Accept'">{{case.vehicleRegDate | date:'dd/MM/yyyy'}}</td>
+      <td nowrap>{{case.assignmentNo}}</td>
+      <td nowrap>{{case.product}}</td>
+      <td nowrap *ngIf="tab == 'To Monitor'"></td>
+      <td nowrap *ngIf="tab == 'To Monitor'"></td>
+      <td nowrap>{{case.status}}</td>
     </tr>
   </tbody>
 </table>
+</div>

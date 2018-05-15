@@ -32,7 +32,8 @@ export class BackendService {
       vehicleRegDate: newCase.vehicleRegDate,
       assignmentNo: newCase.assignmentNo,
       product: newCase.product,
-      status: newCase.status
+      status: newCase.status,
+      condition: newCase.condition
     });
   }
 }

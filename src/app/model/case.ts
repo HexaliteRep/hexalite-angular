@@ -10,5 +10,6 @@ export  class Case  {
       public assignmentNo?: string,
       public product?: string,
       public status?: string,
+      public condition?: string,
   ) { }
 }

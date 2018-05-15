@@ -1,0 +1,52 @@
+.wbth {
+  width: 80px;
+}
+
+.table{
+  text-align: center;
+  margin-left: -240px;
+}
+
+.h2{
+  color: blue;
+  font-size: 18px;
+}
+
+.pageup{
+  margin: 0 auto !important;
+  max-width: 1500px !important;
+}
+
+.pagedown{
+  margin: 0 auto !important;
+  max-width: 1850px !important;
+}
+
+/*
+@media screen and (max-width: 600px) {
+  table {
+      width:100%;
+  }
+  thead {
+      display: none;
+  }
+  tr:nth-of-type(2n) {
+      background-color: inherit;
+  }
+  tr td:first-child {
+      background: #f0f0f0;
+      font-weight:bold;
+      font-size:1.3em;
+  }
+  tbody td {
+      display: block;
+      text-align:center;
+  }
+  tbody td:before {
+      content: attr(data-th);
+      display: block;
+      text-align:center;
+  }
+}
+*/
+

@@ -26,6 +26,7 @@ export class DispatchManagementComponent implements OnInit {
   statusOptions = Constants.STATUS;
   initDate: Date;
   endDate: Date;
+  tab: string;
 
 
   lastUpdate: Date;
@@ -45,7 +46,7 @@ export class DispatchManagementComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.tab = 'To Accept';
     this.getCases();
 
   }
@@ -58,7 +59,8 @@ export class DispatchManagementComponent implements OnInit {
       initDate: new FormControl(''),
       endDate: new FormControl(''),
       eventType: new FormControl(''),
-      status: new FormControl('')
+      status: new FormControl(''),
+      condition: new FormControl('')
     });
   }
 
@@ -139,4 +141,7 @@ export class DispatchManagementComponent implements OnInit {
       error => this.notificationService.init(AddedNotificationComponent, { Content: `Error updating the list` }, {}, 'KO'));
   }
 
+  casesFilter() {
+    return this.cases.filter(x => x.condition === this.tab);
+  }
 }

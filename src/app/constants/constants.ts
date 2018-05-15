@@ -72,4 +72,20 @@ export class Constants {
     name: 'Provider Timeout',
     value: 'Provider Timeout'
   }];
+
+  public static CONDITION = [{
+    _id: '1',
+    name: 'To Accept',
+    value: 'To Accept'
+  },
+  {
+    id: '2',
+    name: 'To Dispatch',
+    value: 'To Dispatch'
+  },
+  {
+    _id: '3',
+    name: 'To Monitor',
+    value: 'To Monitor'
+  }];
 }
