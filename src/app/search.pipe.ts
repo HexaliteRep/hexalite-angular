@@ -19,16 +19,22 @@ export class SearchPipe implements PipeTransform {
           endMoment = moment(filter['endDate']);
         }
 
-        const a = moment(item['dispatchTime']).isBetween(initMoment, endMoment);
-        const notMatchingField = Object.keys(filter).find(
+        let notMatchingField = Object.keys(filter).find(
           key =>
-            item[key] !== filter[key] &&
-            filter[key] !== '' &&
-            !moment(item['dispatchTime']).isBetween(initMoment, endMoment)
+            key === 'initDate' || key === 'endDate' ? this.fecha(item, filter, key) : item[key] !== filter[key] &&
+                filter[key] !== ''
         );
 
         return !notMatchingField; // true if matches all fields
       });
     }
+  }
+
+  fecha(item: Array<any>, filter: { [key: string]: any }, iKey: string) {
+    if (iKey === 'initDate' && filter['initDate'] !== '' && filter['endDate'] !== '') {
+      return  ! moment(item['dispatchTime']).isBetween(moment(filter['initDate']), moment(filter['endDate']));
+
+    }
+    return false;
   }
 }
