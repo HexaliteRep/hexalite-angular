@@ -58,6 +58,13 @@
         <option *ngFor="let option of statusOptions" [value]="option.value">{{option.name}}</option>
       </select>
     </div>
+    <div class="form-group col-md-3">
+        <label>Condition</label>
+        <select id="condition" formControlName="condition" class="form-control">
+          <option [value]="undefined" disabled [selected]="true">Condition</option>
+          <option *ngFor="let option of conditionOptions" [value]="option.value">{{option.name}}</option>
+        </select>
+      </div>
   </div>
 </form>
 

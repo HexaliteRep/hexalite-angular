@@ -22,7 +22,7 @@ export class AddCaseComponent implements OnInit {
   serviceTypeOptions = Constants.SERVICE_TYPE;
   eventTypeOptions = Constants.EVENT_TYPE;
   statusOptions = Constants.STATUS;
-
+  conditionOptions = Constants.CONDITION;
   dispatchTime: Date;
   vehicleRegDate: Date;
 
@@ -79,7 +79,8 @@ export class AddCaseComponent implements OnInit {
       vehicleRegDate: new FormControl(''),
       assignmentNo: new FormControl(''),
       product: new FormControl(''),
-      status: new FormControl('')
+      status: new FormControl(''),
+      condition: new FormControl('')
     });
   }
 

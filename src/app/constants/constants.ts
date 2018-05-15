@@ -90,4 +90,20 @@ export class Constants {
   }];
 
   public static DEFAULT_ZOOM = 11; // 15
+
+  public static CONDITION = [{
+    _id: '1',
+    name: 'To Accept',
+    value: 'To Accept'
+  },
+  {
+    id: '2',
+    name: 'To Dispatch',
+    value: 'To Dispatch'
+  },
+  {
+    _id: '3',
+    name: 'To Monitor',
+    value: 'To Monitor'
+  }];
 }
