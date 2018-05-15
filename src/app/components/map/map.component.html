@@ -31,6 +31,19 @@
   </form>
 </div>
 
+
+<!-- <agm-map [latitude]="41.3887900" [longitude]="2.1589900" [zoom]="zoom">
+  <agm-marker *ngFor="let location of locationOptions" [latitude]="location.lat" [longitude]="location.lng" [iconUrl]="markerIconUrl(false)">
+    <agm-info-window>
+      {{location.name}} <br>
+      Lat: {{location.lat}}<br>
+      Lng: {{location.lng}}
+    </agm-info-window>
+  </agm-marker>
+</agm-map> -->
+
+
+
 <div class="col-lg-12">
   <agm-map [latitude]="41.3887900" [longitude]="2.1589900">
     <agm-direction draggable="true" travel-mode="DRIVING" [origin]="userForm.value.startLoc" [waypoints]="wp" [destination]="userForm.value.endLoc">

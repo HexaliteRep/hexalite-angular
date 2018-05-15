@@ -4,5 +4,6 @@
     "map": "Puntos almacenados",
     "searcher-map": "Puntos google",
     "dispatcher-management": "Dispatcher management",
-    "add-case": "Añadir caso"
+    "add-case": "Añadir caso",
+    "add-map-points": "Añadir puntos"
 }

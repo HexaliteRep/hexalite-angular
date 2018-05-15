@@ -5,6 +5,7 @@ import { MapComponent } from './components/map/map.component';
 import { SearcherMapComponent } from './components/searcher-map/searcher-map.component';
 import { DispatchManagementComponent } from './components/dispatch-management/dispatch-management.component';
 import { AddCaseComponent } from './components/add-case/add-case.component';
+import { AddMapPointsComponent } from './components/add-map-points/add-map-points.component';
 
 export const appRoutes: Routes = [
   { path: 'map',
@@ -21,5 +22,9 @@ export const appRoutes: Routes = [
   {
     path: 'add-case',
     component: AddCaseComponent
+  },
+  {
+    path: 'add-map-points',
+    component: AddMapPointsComponent
   }
 ];

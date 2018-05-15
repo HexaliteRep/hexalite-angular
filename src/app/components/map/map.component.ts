@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ElementRef, ViewChild, NgZone } from '@angular/core';
 import { AfterViewInit, Directive, Output, ChangeDetectorRef } from '@angular/core';
-import { MapsAPILoader } from '@agm/core';
+import { MapsAPILoader, GoogleMapsAPIWrapper } from '@agm/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { FormBuilder, FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -8,13 +8,19 @@ import { HttpClient } from '@angular/common/http';
 import { LocationOption } from '../../model/locationOption';
 import { Waypoint } from '../../model/waypoint';
 
+import { Constants } from '../../constants/constants';
+
 import { BackendService } from '../../services/backend.service';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
-  providers: [Location, {provide: LocationStrategy, useClass: PathLocationStrategy}, HttpClient],
+  providers: [
+    Location,
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+    HttpClient
+  ]
 })
 export class MapComponent implements OnInit {
   title = 'Rutas con backend';
@@ -24,14 +30,17 @@ export class MapComponent implements OnInit {
   locationOptions: LocationOption[] = [];
 
   userForm: FormGroup;
+  zoom: number;
 
-  constructor(private location: Location,
+  constructor(
+    private location: Location,
     private formBuilder: FormBuilder,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private changeDetectorRef: ChangeDetectorRef,
     private http: HttpClient,
-    private backendService: BackendService) {
+    private backendService: BackendService
+  ) {
     this.createForm();
   }
 
@@ -47,17 +56,17 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     const result = this.backendService.getLocations();
-    result.subscribe(x => this.locationOptions = x);
+    result.subscribe(x => (this.locationOptions = x));
+    this.zoom = Constants.DEFAULT_ZOOM;
   }
 
   private changeWaypoints() {
     this.wp = [];
-    this.mapsAPILoader.load().then(
-      () => {
-        this.wp = this.userForm.value.waypoints.map(waypoint => ({
-          location: new google.maps.LatLng(waypoint.lat, waypoint.lng)
-        }));
-      });
+    this.mapsAPILoader.load().then(() => {
+      this.wp = this.userForm.value.waypoints.map(waypoint => ({
+        location: new google.maps.LatLng(waypoint.lat, waypoint.lng)
+      }));
+    });
   }
 
   changeStart() {
@@ -79,7 +88,14 @@ export class MapComponent implements OnInit {
       return;
     }
 
-    this.userForm.value[mapPoint] = new google.maps.LatLng(result.lat, result.lng);
+    this.userForm.value[mapPoint] = new google.maps.LatLng(
+      result.lat,
+      result.lng
+    );
     this.userForm.setValue(this.userForm.value);
+  }
+
+  markerIconUrl(isCar) {
+     return isCar ? '../../../assets/img/damaged-car.png' : '../../../assets/img/truck.png';
   }
 }

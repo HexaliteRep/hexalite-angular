@@ -5,13 +5,13 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 
 import { Case } from '../model/Case';
+import { LocationOption } from '../model/locationOption';
 
 @Injectable()
 export class BackendService {
-
   readonly url = 'http://10.74.73.12:9001';
   readonly urlCase = 'http://10.74.73.12:9005';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getLocations(): Observable<Object[]> {
     return this.http.get<Object[]>(this.url + '/hxl/paths');
@@ -35,4 +35,14 @@ export class BackendService {
       status: newCase.status
     });
   }
+
+  addMapPoint(newPoint: LocationOption): Observable<LocationOption> {
+    return this.http.post(this.url + '/hxl/paths', {
+      name: newPoint.name,
+      lat: newPoint.lat,
+      lng: newPoint.lng,
+      markerType: newPoint.markerType
+    });
+  }
+
 }

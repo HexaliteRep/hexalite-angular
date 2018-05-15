@@ -72,4 +72,22 @@ export class Constants {
     name: 'Provider Timeout',
     value: 'Provider Timeout'
   }];
+
+  public static MARKER_TYPE = [{
+    _id: '1',
+    name: 'Client',
+    value: 'Client'
+  },
+  {
+    _id: '2',
+    name: 'Tow truck',
+    value: 'Tow'
+  },
+  {
+    _id: '3',
+    name: 'Workshop',
+    value: 'Workshop'
+  }];
+
+  public static DEFAULT_ZOOM = 11; // 15
 }

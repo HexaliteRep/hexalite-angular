@@ -4,5 +4,6 @@ export  class LocationOption  {
       public  name?:  string,
       public lat?: number,
       public lng?: number,
+      public markerType?: string
   ) { }
 }

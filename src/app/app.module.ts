@@ -29,8 +29,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BackendService } from './services/backend.service';
 import { DomService } from './services/dom.service';
 import { NotificationService } from './services/notification.service';
+import { MapService } from './services/map.service';
 
 import { SearchPipe } from './search.pipe';
+import { AddMapPointsComponent } from './components/add-map-points/add-map-points.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -46,7 +48,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     DatepickerAdapterComponent,
     AddCaseComponent,
     AddedNotificationComponent,
-    SearchPipe
+    SearchPipe,
+    AddMapPointsComponent
 
   ],
   imports: [
@@ -75,7 +78,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AddedNotificationComponent
 
   ],
-  providers: [Location, BackendService, DomService, NotificationService],
+  providers: [Location, BackendService, DomService, NotificationService, MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -29,7 +29,11 @@ export class AppComponent implements OnInit {
     {
       name: 'add-case',
       path: 'add-case'
-    }
+    },
+    // {
+    //   name: 'add-map-points',
+    //   path: 'add-map-points'
+    // }
   ];
 
   constructor(private translate:  TranslateService, private notificationService: NotificationService) {

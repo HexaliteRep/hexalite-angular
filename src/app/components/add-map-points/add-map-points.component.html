@@ -1,0 +1,30 @@
+<form [formGroup]="addMapPointsForm">
+  <div class="row">
+    <div class="form-group col-md-3">
+      <label>Name</label>
+      <input id='name' placeholder="Name" formControlName="name" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+        class="form-control" #name>
+    </div>
+    <div class="form-group col-md-3">
+      <label>Latitude</label>
+      <input id='lat' placeholder="Latitude" formControlName="lat" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+        class="form-control" #lat>
+    </div>
+    <div class="form-group col-md-3">
+      <label>Longitude</label>
+      <input id='lng' placeholder="Longitude" formControlName="lng" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+        class="form-control" #lng>
+    </div>
+    <div class="form-group col-md-3">
+      <label>Type</label>
+      <select id="markerType" formControlName="markerType" class="form-control">
+        <option [value]="undefined" disabled [selected]="true">Type</option>
+        <option *ngFor="let option of markerTypeOptions" [value]="option.value">{{option.name}}</option>
+      </select>
+    </div>
+  </div>
+</form>
+
+<p>
+  <button type="button" class="btn btn-outline-primary" (click)="addMapPoints();">Add point</button>
+</p>
